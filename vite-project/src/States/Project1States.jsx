@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 const imgAtom = atom({
     key:"imgAtom",
@@ -15,8 +15,8 @@ const ageAtom = atom({
     default:0
 })
 
-const locatuionAtom = atom({
-    key:"locatuionAtom",
+const locationAtom = atom({
+    key:"locationAtom",
     default:""
 })
 
@@ -35,11 +35,26 @@ const photosAtom = atom({
     default:0
 })
 
+const detailsSelector  = selector({
+    key:"detailsSelector",
+    get:({get})=>({
+        img:get(imgAtom),
+        name:get(nameAtom),
+        age:get(ageAtom),
+        location:get(locationAtom),
+        likes:get(likesAtom),
+        followers:get(followersAtom),
+        photos:get(photosAtom)
+    })
+}) 
+
 export {
     imgAtom,
     nameAtom,
     ageAtom,
+    locationAtom,
     likesAtom,
     followersAtom,
-    photosAtom
+    photosAtom,
+    detailsSelector
 }
